@@ -1,4 +1,8 @@
-﻿Console.WriteLine("Input number of rows: ");
+﻿Console.WriteLine();
+Console.WriteLine("    T  A  S  K    -    1");
+Console.WriteLine();
+
+Console.WriteLine("Input number of rows: ");
 int rows = Convert.ToInt32(Console.ReadLine());
 Console.WriteLine("Input number of columns: ");
 int columns = Convert.ToInt32(Console.ReadLine());
@@ -7,6 +11,9 @@ int[,] myArray = Create2DMatrix(rows, columns);
 Console.WriteLine();
 Console.WriteLine("Initial array: ");
 Print2DArray(myArray);
+Console.WriteLine("Transformed array: ");
+DownStairsFromArray(myArray);
+
 // Print2DArray(NullInRowAndColCrossingOnMinValue(myArray));
 // LastFirst(myArray);
 Console.WriteLine("END");
@@ -38,6 +45,30 @@ void Print2DArray(int[,] array)
 // 9 5 3 2
 // 8 4 4 2
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void DownStairsFromArray(int[,] array)
+{
+    int temp;
+    int k;
+    for(int i = 0; i < array.GetLength(0); i++)                     // Цикл проходит по всем строкам вообще
+    {
+        for(int j = 0; j < array.GetLength(1) - 1; j++)             // Цикл проходит по всем столбцам вообще
+        {
+            k = j + 1;
+            while(k < array.GetLength(1))                           // Цикл проходит по всем столбцам для одной ячейки
+            {
+                temp = array[i, j];
+                if (temp < array[i, k]) 
+                {
+                    array[i, j] = array[i, k];
+                    array[i, k] = temp;
+                }
+                k++;
+            }
+        }
+    }
+    Print2DArray(array);
+}
 
 // Задача 56: Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку с наименьшей суммой элементов.
 // Например, задан массив:
