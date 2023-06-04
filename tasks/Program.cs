@@ -27,6 +27,22 @@ Console.WriteLine("Initial array: ");
 Print2DArray(myArray);
 // Нахождение строки с минимальной суммой элементов
 MinSumRowFinder(myArray);
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Console.WriteLine();
+Console.WriteLine();
+Console.WriteLine("    T  A  S  K    -    3");
+// Умножать матрицы можно только тогда, когда количество столбцов первой матрицы равно количеству строк второй матрицы.
+// матрица 1 уже есть, создаем матрицу 2
+Console.WriteLine();
+// Генерация матрицы, ее заполнение
+int[,] mySecondArray = Create2DMatrix(columns, rows);
+// Печать первой матрицы
+Console.WriteLine();
+Console.WriteLine("First array: ");
+Print2DArray(myArray);
+// Печать первой матрицы
+Console.WriteLine("Second array: ");
+Print2DArray(mySecondArray);
 
 // Print2DArray(NullInRowAndColCrossingOnMinValue(myArray));
 // LastFirst(myArray);
