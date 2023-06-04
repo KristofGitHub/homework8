@@ -1,18 +1,27 @@
-﻿Console.WriteLine();
+﻿////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Console.WriteLine();
+Console.WriteLine();
 Console.WriteLine("    T  A  S  K    -    1");
 Console.WriteLine();
-
+// Запрос ввода пользователем размера матрицы
 Console.WriteLine("Input number of rows: ");
 int rows = Convert.ToInt32(Console.ReadLine());
 Console.WriteLine("Input number of columns: ");
 int columns = Convert.ToInt32(Console.ReadLine());
-
+// Генерация матрицы, ее заполнение
 int[,] myArray = Create2DMatrix(rows, columns);
+// Печать матрицы
 Console.WriteLine();
 Console.WriteLine("Initial array: ");
 Print2DArray(myArray);
+// Сортировка строк матрицы по убыванию
 Console.WriteLine("Transformed array: ");
 DownStairsFromArray(myArray);
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Console.WriteLine();
+Console.WriteLine();
+Console.WriteLine("    T  A  S  K    -    2");
+Console.WriteLine();
 
 // Print2DArray(NullInRowAndColCrossingOnMinValue(myArray));
 // LastFirst(myArray);
