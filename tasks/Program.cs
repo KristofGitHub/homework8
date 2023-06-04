@@ -21,7 +21,12 @@ DownStairsFromArray(myArray);
 Console.WriteLine();
 Console.WriteLine();
 Console.WriteLine("    T  A  S  K    -    2");
+// Печать матрицы
 Console.WriteLine();
+Console.WriteLine("Initial array: ");
+Print2DArray(myArray);
+// Нахождение строки с минимальной суммой элементов
+MinSumRowFinder(myArray);
 
 // Print2DArray(NullInRowAndColCrossingOnMinValue(myArray));
 // LastFirst(myArray);
@@ -64,12 +69,12 @@ void DownStairsFromArray(int[,] array)
         for(int j = 0; j < array.GetLength(1) - 1; j++)             // Цикл проходит по всем столбцам вообще
         {
             k = j + 1;
-            while(k < array.GetLength(1))                           // Цикл проходит по всем столбцам для одной ячейки
-            {
-                temp = array[i, j];
-                if (temp < array[i, k]) 
-                {
-                    array[i, j] = array[i, k];
+            while(k < array.GetLength(1))                           // Цикл проходит по всем столбцам для одной заданной чейки
+            {                                                       // чтобы учесть случай, когда в следующей ячейке лежит
+                temp = array[i, j];                                 // меньшее значение, чем в текущей.
+                if (temp < array[i, k])                             // Отвязка от j с помощью k делается, чтобы сравнить одну ячейку
+                {                                                   // со всеми остальными ячейками строки, при этом оставаясь внутри
+                    array[i, j] = array[i, k];                      // обоих циклов прохода по всем строкам и столбцам.
                     array[i, k] = temp;
                 }
                 k++;
@@ -87,6 +92,30 @@ void DownStairsFromArray(int[,] array)
 // 5 2 6 7
 // Программа считает сумму элементов в каждой строке и выдаёт номер строки с наименьшей суммой элементов: 1 строка
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void MinSumRowFinder(int[,] array)
+{
+    int minRowSumNumber = 0;
+    int minSumRow = 0;
+    int sumRow = 0;
+    for(int i = 0; i < array.GetLength(0); i++)
+    {
+        for(int j = 0; j < array.GetLength(1); j++)         // Цикл суммирования значений ячеек одной (текущей) строки.
+        {
+            sumRow += array[i, j];                          // Суммируем значения ячеек текущей строки.    
+        }
+        if (i == 0) minSumRow = sumRow;                     // При первом проходе скидываем сумму ячеек первой строки в minSumRow.
+        else if (minSumRow > sumRow) 
+        {
+            minSumRow = sumRow;
+            minRowSumNumber = i;                            // Фиксируем номер строки с минимальной суммой элементов.
+        }
+        sumRow = 0;
+    }
+    Console.WriteLine($"Number of row with minimal sum of elements is {minRowSumNumber} (строка № {minRowSumNumber + 1})");
+    Console.WriteLine($"Sum of elements this row is {minSumRow}");
+    Console.WriteLine();
+}
 
 // Задача 58: Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
 // Например, даны 2 матрицы:
