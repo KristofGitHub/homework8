@@ -38,11 +38,12 @@ Console.WriteLine();
 int[,] mySecondArray = Create2DMatrix(columns, rows);
 // Печать первой матрицы
 Console.WriteLine();
-Console.WriteLine("First array: ");
+Console.WriteLine("A matrix: ");
 Print2DArray(myArray);
 // Печать первой матрицы
-Console.WriteLine("Second array: ");
+Console.WriteLine("B matrix: ");
 Print2DArray(mySecondArray);
+AmplifyMatrix(myArray, mySecondArray);
 
 // Print2DArray(NullInRowAndColCrossingOnMinValue(myArray));
 // LastFirst(myArray);
@@ -141,6 +142,35 @@ void MinSumRowFinder(int[,] array)
 // 18 20
 // 15 18
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void AmplifyMatrix(int[,] arrayA, int[,] arrayB)
+{
+    int ic = 0;
+    int jc = 0;
+    int value = 0;
+    int[,] arrayC = new int[arrayA.GetLength(0), arrayB.GetLength(1)];
+    while(ic < arrayA.GetLength(1))
+    {
+        for(int i = 0; i < arrayA.GetLength(0); i++)
+        {
+            for(int j = 0; j < arrayA.GetLength(1); j++)
+            {
+                value += arrayA[ic, j] * arrayB[j, jc];
+                Console.WriteLine($"{arrayA[ic, j]} * {arrayB[j, jc]} + privious term = {value}");
+            }
+            arrayC[ic, jc] = value;
+            Console.WriteLine($"{value}, row {ic}, col {jc}");
+            value = 0;
+            if(jc < arrayA.GetLength(0)) jc++;
+            else jc = 0;
+        }
+        ic++;
+        jc = 0;
+    }
+    Console.WriteLine();
+    Console.WriteLine("Amplifying of A matrix and B matrix give a C-matrix: ");
+    Print2DArray(arrayC);
+}
 
 // Задача 60. ...Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
 // Массив размером 2 x 2 x 2
