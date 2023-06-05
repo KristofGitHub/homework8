@@ -44,7 +44,11 @@ Print2DArray(myArray);
 Console.WriteLine("B matrix: ");
 Print2DArray(mySecondArray);
 AmplifyMatrix(myArray, mySecondArray);
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Console.WriteLine();
+Console.WriteLine();
+Console.WriteLine("    T  A  S  K    -    4");
+Console.WriteLine();
 // Print2DArray(NullInRowAndColCrossingOnMinValue(myArray));
 // LastFirst(myArray);
 Console.WriteLine("END");
