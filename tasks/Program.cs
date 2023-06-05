@@ -33,7 +33,6 @@ Console.WriteLine();
 Console.WriteLine("    T  A  S  K    -    3");
 // Умножать матрицы можно только тогда, когда количество столбцов первой матрицы равно количеству строк второй матрицы.
 // матрица 1 уже есть, создаем матрицу 2
-Console.WriteLine();
 // Генерация матрицы, ее заполнение
 int[,] mySecondArray = Create2DMatrix(columns, rows);
 // Печать первой матрицы
@@ -49,12 +48,12 @@ Console.WriteLine();
 Console.WriteLine();
 Console.WriteLine("    T  A  S  K    -    4");
 Console.WriteLine();
-
+int[,,] my3DArray = Create3DArray(2, 2, 2);
+Print3DArray(my3DArray);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Console.WriteLine();
 Console.WriteLine();
 Console.WriteLine("    T  A  S  K    -    5");
-Console.WriteLine();
 // Генерация нулевой матрицы, ее заполнение нулями
 int[,] squareArray = Create2DSimpleMatrix(columns, rows);
 // Печать первой матрицы
@@ -208,13 +207,63 @@ void AmplifyMatrix(int[,] arrayA, int[,] arrayB)
     Print2DArray(arrayC);
 }
 
-// Задача 60. ...Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
+// Задача 60. ...Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. Напишите программу, которая будет построчно 
+// выводить массив, добавляя индексы каждого элемента.
 // Массив размером 2 x 2 x 2
 // 66(0,0,0) 25(0,1,0)
 // 34(1,0,0) 41(1,1,0)
 // 27(0,0,1) 90(0,1,1)
 // 26(1,0,1) 55(1,1,1)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+int[,,] Create3DArray(int rows, int columns, int stages)
+{
+    int[,,] array = new int[rows, columns, stages];
+    for(int i = 0; i < rows; i++) 
+    {
+        for(int j = 0; j < columns; j++) 
+        {
+            for(int k = 0; k < stages; k++)
+            {
+                array[i, j, k] = new Random().Next(1, 100);
+                // Cycle for findind of return and refilling array
+                for(int x = 0; x < array.GetLength(0); x++)
+                {
+                    for(int y = 0; y < array.GetLength(1); y++)
+                    {
+                        for(int z = 0; z < array.GetLength(2); z++)
+                        {
+                            if ((i == x) && (j == y) && (k == z)) continue;
+                            else
+                            {
+                                while(array[i, j, k] == array[x, y, z]) 
+                                {
+                                   array[i, j, k] = new Random().Next(1, 100);   
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return array;
+}
+
+void Print3DArray(int[,,] array)
+{
+    for(int i = 0; i < array.GetLength(0); i++)
+    {
+        for(int j = 0; j < array.GetLength(1); j++)
+        {
+            for(int k = 0; k < array.GetLength(2); k++)
+            {
+                Console.Write($"{array[i, j, k]}({i}, {j}, {k})" + "\t");
+            }
+        }
+        Console.WriteLine();
+    }
+    Console.WriteLine();
+}
 
 // Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4.
 // Например, на выходе получается вот такой массив:
