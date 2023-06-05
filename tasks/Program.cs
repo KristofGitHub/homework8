@@ -49,8 +49,40 @@ Console.WriteLine();
 Console.WriteLine();
 Console.WriteLine("    T  A  S  K    -    4");
 Console.WriteLine();
-// Print2DArray(NullInRowAndColCrossingOnMinValue(myArray));
-// LastFirst(myArray);
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Console.WriteLine();
+Console.WriteLine();
+Console.WriteLine("    T  A  S  K    -    5");
+Console.WriteLine();
+// Генерация нулевой матрицы, ее заполнение нулями
+int[,] squareArray = Create2DSimpleMatrix(columns, rows);
+// Печать первой матрицы
+Console.WriteLine();
+Console.WriteLine("A square matrix: ");
+Print2DArray(squareArray);
+//////////////////
+squareArray = GorFiller(squareArray, 0, 0, squareArray.GetLength(1));
+Print2DArray(squareArray);
+//////////////////
+squareArray = VertFiller(squareArray, squareArray.GetLength(1) - 1, 1, squareArray.GetLength(0));
+Print2DArray(squareArray);
+//////////////////
+squareArray = GorFiller(squareArray, squareArray.GetLength(0) - 1, squareArray.GetLength(1) - 2, 0);
+Print2DArray(squareArray);
+//////////////////
+squareArray = VertFiller(squareArray, 0, squareArray.GetLength(0) - 2, 1);
+Print2DArray(squareArray);
+//////////////////
+squareArray = GorFiller(squareArray, 1, 1, squareArray.GetLength(1) - 1);
+Print2DArray(squareArray);
+//////////////////
+squareArray = VertFiller(squareArray, squareArray.GetLength(1) - 2, 2, squareArray.GetLength(0) - 2);
+Print2DArray(squareArray);
+//////////////////
+squareArray = GorFiller(squareArray, squareArray.GetLength(0) - 2, squareArray.GetLength(1) - 3, 1);
+Print2DArray(squareArray);
+
 Console.WriteLine("END");
 
 int[,] Create2DMatrix (int rows, int columns)
@@ -192,7 +224,58 @@ void AmplifyMatrix(int[,] arrayA, int[,] arrayB)
 // 10 09 08 07
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+int[,] Create2DSimpleMatrix (int rows, int columns)
+{
+    int[,] array = new int[rows, columns];
+    for(int i = 0; i < rows; i++) for(int j = 0; j < columns; j++) array[i, j] = new Random().Next(0, 1);
+    return array;
+}
 
+int[,] GorFiller(int[,] array, int colNum, int start, int stop)
+{
+    if ((start - stop) >= 0)
+    {
+        while(start >= stop)
+        {
+            array[colNum, start] = new Random().Next(1, 100);
+            start--;
+        }
+    }
+    else
+    {
+        while(start < stop)
+        {
+            array[colNum, start] = new Random().Next(1, 100);
+            start++;
+        }
+    }
+    return array;
+}
+
+int[,] VertFiller(int[,] array, int strNum, int start, int stop)
+{
+    if ((start - stop) >= 0)
+    {
+        while(start >= stop)
+        {
+            array[start, strNum] = new Random().Next(1, 100);
+            start--;
+        }
+    }
+    else
+    {
+        while(start < stop)
+        {
+            array[start, strNum] = new Random().Next(1, 100);
+            start++;
+        }
+    }
+    return array;
+}
+
+
+// Print2DArray(NullInRowAndColCrossingOnMinValue(myArray));
+// LastFirst(myArray);
 
 // int[,] NullInRowAndColCrossingOnMinValue(int[,] array)
 // {
